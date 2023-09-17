@@ -4,13 +4,26 @@ import java.time.LocalDate;
 
 import com.usuarios.crud.cal.entities.Client;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+
 public class ClientDTO {
 	
 	private Long id;
+	
+	@NotBlank(message = "Campo Obrigatório")
 	private String name;
+	
+	
 	private String cpf;
+	
+	@Positive(message = "O valor deve ser Positivo!")
 	private Double income;
+	
+	@PastOrPresent
 	private LocalDate birthDate;
+
 	private Integer children;
 	
 	public ClientDTO(Long id, String name, String cpf, Double income, LocalDate birthDate, Integer children) {
