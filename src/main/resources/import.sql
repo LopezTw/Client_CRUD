@@ -1,0 +1,16 @@
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Caio Augusto', '123.000.000-01', 20000, '1997-09-28', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Nelio Alves', '123.000.000-02', 32000, '1960-04-01', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Harry Potter', '123.000.000-03', 10000, '1980-06-31', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Minerva McGonagall', '123.000.000-04', 40000, '1935-10-04', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Albus Dumbledore', '123.000.000-05', 87000, '1881-08-21', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Lilian Potter', '123.000.000-06', 5000, '1960-01-30', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Thiago Potter', '123.000.000-07', 5000, '1960-03-27', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Sirius Black', '123.000.000-08', 6400, '1959-11-03', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Hermione Granger', '123.000.000-09', 14000, '1979-09-19', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Ron Weasley', '123.000.000-10', 13000, '1980-03-01', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Bellatrix Lestrange', '123.000.000-11', 10000, '1951-04-05', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Remus Lupin', '123.000.000-12', 5000, '1960-03-10', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Luna Lovegood', '123.000.000-13', 21000, '1981-02-13', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Cedrico Diggory', '123.000.000-14', 1000, '1977-06-24', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Rúbeu Hagrid', '123.000.000-15', 50000, '1928-12-06', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Severus Snape', '123.000.000-16', 23000, '1960-01-09', 0);
