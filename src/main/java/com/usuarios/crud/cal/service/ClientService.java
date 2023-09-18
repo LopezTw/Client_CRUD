@@ -11,6 +11,8 @@ import com.usuarios.crud.cal.entities.Client;
 import com.usuarios.crud.cal.repositories.ClientRepository;
 import com.usuarios.crud.cal.service.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class ClientService {
 	
@@ -42,11 +44,15 @@ public class ClientService {
 	
 	@Transactional
 	public ClientDTO update(Long id, ClientDTO dto) { // vai receber o id e o corpo
-		
+		try {
 		Client entity = rep.getReferenceById(id); // aqui n vai no banco de dados, eh monitorado pela JPA	
 	    dtoToEntity(dto, entity);
 		entity = rep.save(entity); 
 		return new ClientDTO(entity);
+		}
+		catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Cliente não encontrado!");
+		}
 	}
 	
 	private void dtoToEntity(ClientDTO dto, Client entity) {
