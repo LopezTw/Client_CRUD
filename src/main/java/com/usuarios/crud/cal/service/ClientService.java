@@ -1,7 +1,5 @@
 package com.usuarios.crud.cal.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.usuarios.crud.cal.dto.ClientDTO;
 import com.usuarios.crud.cal.entities.Client;
 import com.usuarios.crud.cal.repositories.ClientRepository;
+import com.usuarios.crud.cal.service.exceptions.ResourceNotFoundException;
 
 @Service
 public class ClientService {
@@ -20,10 +19,8 @@ public class ClientService {
 	
 	@Transactional(readOnly = true)
 	public ClientDTO findById(Long id) {
-		Optional<Client> result = rep.findById(id);
-		Client client = result.get();
-		ClientDTO dto = new ClientDTO(client);
-		return dto;
+		Client client = rep.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado!"));
+		return new ClientDTO(client);
 		
 	}
 	
@@ -40,6 +37,15 @@ public class ClientService {
 		Client entity = new Client();
 		dtoToEntity(dto, entity);
 		entity = rep.save(entity); // salvar
+		return new ClientDTO(entity);
+	}
+	
+	@Transactional
+	public ClientDTO update(Long id, ClientDTO dto) { // vai receber o id e o corpo
+		
+		Client entity = rep.getReferenceById(id); // aqui n vai no banco de dados, eh monitorado pela JPA	
+	    dtoToEntity(dto, entity);
+		entity = rep.save(entity); 
 		return new ClientDTO(entity);
 	}
 	
