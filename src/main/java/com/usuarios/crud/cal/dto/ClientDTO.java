@@ -7,23 +7,29 @@ import com.usuarios.crud.cal.entities.Client;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 public class ClientDTO {
 	
 	private Long id;
 	
+	@Size(min = 3, max = 80, message = "Nome precisa ter de 3 a 80 caracteres")
 	@NotBlank(message = "Campo Obrigatório")
 	private String name;
+
 	
-	
+	@Size(min = 11, max = 14, message = "CPF precisa ter 11 digitos")
+	@NotBlank(message = "Campo Obrigatório")
 	private String cpf;
 	
 	@Positive(message = "O valor deve ser Positivo!")
 	private Double income;
 	
-	@PastOrPresent
+	@PastOrPresent(message = "Datas futuras não são aceitas!")
 	private LocalDate birthDate;
-
+	
+	@PositiveOrZero
 	private Integer children;
 	
 	public ClientDTO(Long id, String name, String cpf, Double income, LocalDate birthDate, Integer children) {
