@@ -1,14 +1,17 @@
 package com.usuarios.crud.cal.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.usuarios.crud.cal.dto.ClientDTO;
 import com.usuarios.crud.cal.entities.Client;
 import com.usuarios.crud.cal.repositories.ClientRepository;
+import com.usuarios.crud.cal.service.exceptions.DataBaseException;
 import com.usuarios.crud.cal.service.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -53,6 +56,19 @@ public class ClientService {
 		catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Cliente não encontrado!");
 		}
+	}
+	
+	@Transactional(propagation = Propagation.SUPPORTS)
+	public void delete(Long id) {
+		if (!rep.existsById(id)) {
+			throw new ResourceNotFoundException("Recurso não encontrado");
+		}
+		try {
+	        	rep.deleteById(id);    		
+		}
+	    	catch (DataIntegrityViolationException e) { // caso tente deletar algo que esteja atrelado a outra coisa, ex: produto e pedido
+	        	throw new DataBaseException("Falha de integridade referencial");
+	   	}
 	}
 	
 	private void dtoToEntity(ClientDTO dto, Client entity) {
